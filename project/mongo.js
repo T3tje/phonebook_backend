@@ -6,12 +6,11 @@ if (process.argv.length < 3) {
 }
 
 const password = process.argv[2]
-
 const name = process.argv[3]
 const number  = process.argv[4]
-
 const url =
 `mongodb+srv://fullstackopen:${password}@cluster0.mwzy7.mongodb.net/phonebook?retryWrites=true&w=majority`
+
 
 mongoose.connect(url)
 
