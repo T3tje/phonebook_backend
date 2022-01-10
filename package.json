@@ -1,0 +1,34 @@
+{
+  "name": "phonebook",
+  "version": "1.0.0",
+  "description": "phonebook backend",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:ui": "rm -rf build && cd ../phonebook_frontend/ && npm run build && cp -r build ../phonebook-backend/ && cd ../phonebook-backend/",
+    "deploy": "git push heroku HEAD:main --force",
+    "logs:prod": "heroku logs --tail",
+    "deploy:full": "npm run build:ui && git add -A && git commit -m uibuild && npm run deploy && npm run logs:prod"
+  },
+  "repository": {
+    "type": "git"
+  },
+  "author": "Tilman Drewke",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/T3tje/fullstackopen-part3-ex/issues"
+  },
+  "homepage": "https://github.com/T3tje/fullstackopen-part3-ex#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.2",
+    "mongoose": "^6.1.3",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
