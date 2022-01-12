@@ -1,5 +1,5 @@
 require('dotenv').config()
-const { request } = require('express');
+const { request, response } = require('express');
 const express = require('express')
 const morgan = require('morgan')
 const cors = require('cors')
@@ -91,6 +91,21 @@ app.delete("/api/persons/:id",(req,res,next) => {
     
 })
 
+app.put("/api/persons/:id", (req,res,next) => {
+    const body = req.body 
+
+    const person = {
+      name: body.name,
+      number: body.number
+    }
+
+    Person.findByIdAndUpdate(req.params.id,person,{new:true})
+      .then(updatedPerson => {
+        res.json(updatedPerson)
+      })
+    .catch(error => next(error))
+})
+
 const errorHandler = (error, req, res, next) => {
   console.error(error.message)
 
@@ -108,7 +123,7 @@ const errorHandler = (error, req, res, next) => {
   
   next(error)
 }
-//gittest
+
 // this has to be the last loaded middleware.
 app.use(errorHandler)
 
